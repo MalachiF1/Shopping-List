@@ -1,0 +1,11 @@
+module.exports = {
+    publicRuntimeConfig: {
+        APP_NAME: 
+        API_DEVELOPMENT: 
+        API_PRODUCTION: 
+        PRODUCTION: 
+        DOMAIN_DEVELOPMENT: 
+        DOMAIN_PRODUCTION: 
+        GOOGLE_CLIENT_ID: 
+    }
+};

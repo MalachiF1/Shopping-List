@@ -1,0 +1,220 @@
+/* hides arrows on number inputs */
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+hr {
+    border-color: white;
+}
+
+/* progress bar */
+#nprogress .bar {
+    height: 3px !important;
+}
+
+
+/* the index page */
+.app {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+}
+
+.app__body {
+    display: flex;
+    background-color: rgb(44, 44, 44);
+    color: white;
+    height: 85vh;
+    width: 80vw;
+    box-shadow: -1px 4px 30px -2px rgba(0, 0, 0, 0.75);
+    border-radius: 13px;
+    border-width: 3px;
+    border-style: solid;
+    border-color:rgba(50, 50, 50, 0.9);
+    border-radius: 13px;
+}
+
+
+/* index page list */
+.main {
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+    overflow-x: hidden;
+}
+
+.main__title {
+    padding-top: 20px;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    place-content: center;
+}
+
+.main__filters {
+    display: flex;
+    place-items: center;
+    place-content: center;
+    margin-top: 30px;
+}
+
+.main__filters__search {
+    background-color: rgb(80, 80, 80);
+    border-radius: 2rem;
+    height: 3rem;
+    width: 17rem;
+}
+
+.main__filters__search__searchbar {
+    border-radius: 1.2rem;
+    border: none;
+    outline-width: 0;
+    height: 2.38rem;
+    width: 13.5rem;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+}
+
+
+/* addItem dropdown */
+
+.main__title__dropdown {
+    width: 100vw;
+    height: 2rem;
+    padding-top: 20px;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    background-color: rgb(80, 80, 80);
+    cursor: pointer;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.main__title__dropdown span {
+   padding-bottom: 2.2vh;
+   font-size: 20px;
+}
+
+.main__title__dropdown__inner {
+    background-color: rgb(80, 80, 80);
+}
+
+.dropdown__addItem__form {
+    display: grid;
+    place-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.dropdown__addItem__input {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    height: 39px;
+    padding: 10px;
+}
+
+.dropdown__addItem__input__btn {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    height: 39px;
+    border-radius: 2rem;
+    padding: 10px;
+    background-color: white;
+}
+
+.dropdown__addItem__input__field {
+    border: none;
+    border-radius: 15px;
+    outline-width: 0;
+    margin-left: 10px;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+    height: 2.15rem;
+    width: 13rem;
+}
+
+.main__body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+}
+
+/* the item cards */
+.main__card__title {
+    font-size: 1.15rem;
+    background-color:rgb(80, 80, 80);
+}
+
+.main__card__info {
+    font-size: 1.1rem;
+    background-color: rgb(100, 100, 100);
+}
+
+/* signin page */
+
+.signinPage {
+    padding-top: 2rem;
+    overflow: hidden;
+    height: 55rem;
+    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    color: white;
+}
+
+
+.signupPage {
+    padding-top: 2rem;
+    overflow: hidden;
+    height: 55rem;
+    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    color: white;
+}
+
+.contactPage {
+    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    color: white;
+    height: 55rem;
+}
+
+.updatePage {
+    padding-top: 2rem;
+    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    color: white;
+    height: 55rem;
+}
+
+.forgotPasswordPage {
+    padding-top: 3rem;
+    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    color: white;
+    height: 55rem;
+}
+
+.resetPasswordPage {
+    padding-top: 3rem;
+    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    color: white;
+    height: 55rem;
+}
+
+.activateAcountPage {
+    padding-top: 3rem;
+    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    color: white;
+    height: 55rem;
+}
+
+
+
+
+
+
