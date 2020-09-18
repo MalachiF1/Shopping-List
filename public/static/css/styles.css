@@ -1,4 +1,120 @@
+:root[data-theme='dark'] {
+    --hr-color: white;
+    --standard-background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    --app-body-background: rgb(44, 44, 44);
+    --app-body-border: rgba(50, 50, 50, 0.9);
+    --text-color: white;
+    --primary-color: rgb(80, 80, 80);
+    --card-info-background: rgb(100, 100, 100);
+    --addItem-btn-color: white;
+    --addItem-dropdown-color: rgb(80, 80, 80, 0.5);
+}
+
+:root[data-theme='light'] {
+    --hr-color: rgba(10, 10, 10, 0.5);
+    --standard-background: radial-gradient(circle, rgba(255, 255, 255, 1) 20%, rgba(210, 210, 210, 1) 80%);
+    --app-body-background: rgb(230, 230, 230);
+    --app-body-border: rgb(240, 240, 240);
+    --text-color: black;
+    --primary-color: rgb(150, 150, 150);
+    --card-info-background: rgb(180, 180, 180);
+    --addItem-btn-color: rgba(255, 255, 255, 0.8);
+    --addItem-dropdown-color: rgb(150, 150, 150, 0.5);
+}
+
+@media screen and (min-width: 1px) {
+    html {
+        font-size: 10px;
+    }
+    .main__filters__search {
+        height: 3.5rem;
+        width: 20vw;
+    }
+    .main__filters__search__searchbar {
+        height: 2.7rem;
+        width: 10vw;
+    }
+    .main__title__dropdown span {
+        font-size: 12px;
+    }
+    .app__body {
+        height: 85vh;
+        width: 80vw;
+    }
+}
+
+@media screen and (min-width: 520px) {
+    html {
+        font-size: 10px;
+    }
+    .main__filters__search {
+        height: 3.5rem;
+        width: 20vw;
+    }
+    .main__filters__search__searchbar {
+        height: 2.7rem;
+        width: 12vw;
+    }
+    .main__title__dropdown span {
+        font-size: 12px;
+    }
+    .app__body {
+        height: 85vh;
+        width: 80vw;
+    }
+}
+
+@media screen and (min-width: 950px) {
+    html {
+        font-size: 10px;
+    }
+    .main__filters__search {
+        height: 3.2rem;
+        width: 17vw;
+    }
+    .main__filters__search__searchbar {
+        height: 2.6rem;
+        width: 12.5vw;
+    }
+    .main__title__dropdown span {
+        font-size: 12px;
+    }
+    .app__body {
+        height: 85vh;
+        width: 70vw;
+    }
+}
+
+
+@media screen and (min-width: 1840px) {
+    html {
+        font-size: 16px;
+    }
+    .main__filters__search {
+        height: 2.9rem;
+        width: 14.2vw;
+    }
+    .main__filters__search__searchbar {
+        height: 2.4rem;
+        width: 11.1vw;
+    }
+    .main__title__dropdown span {
+        font-size: 20px;
+    }
+    .app__body {
+        height: 85vh;
+        width: 70vw;
+    }
+}
+
+
+.placeCenter {
+    display: flex;
+    place-content: center;
+}
+
 /* hides arrows on number inputs */
+
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
@@ -8,12 +124,19 @@ input[type=number] {
 }
 
 hr {
-    border-color: white;
+    border-color: var(--hr-color);
 }
 
 /* progress bar */
 #nprogress .bar {
     height: 3px !important;
+} 
+
+/* navbar */
+.navbarLink {
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 
@@ -22,21 +145,19 @@ hr {
     display: grid;
     place-items: center;
     height: 100vh;
-    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
+    background: var(--standard-background);
 }
 
 .app__body {
     display: flex;
-    background-color: rgb(44, 44, 44);
-    color: white;
-    height: 85vh;
-    width: 80vw;
     box-shadow: -1px 4px 30px -2px rgba(0, 0, 0, 0.75);
     border-radius: 13px;
     border-width: 3px;
     border-style: solid;
-    border-color:rgba(50, 50, 50, 0.9);
     border-radius: 13px;
+    background-color: var(--app-body-background);
+    color: var(--text-color);
+    border-color: var(--app-body-border); 
 }
 
 
@@ -64,18 +185,16 @@ hr {
 }
 
 .main__filters__search {
-    background-color: rgb(80, 80, 80);
-    border-radius: 2rem;
-    height: 3rem;
-    width: 17rem;
+    border-radius: 15vw;
+    background-color: var(--primary-color);
+    display: flex;
+    place-content: center;
 }
 
 .main__filters__search__searchbar {
-    border-radius: 1.2rem;
+    border-radius: 14vw;
     border: none;
     outline-width: 0;
-    height: 2.38rem;
-    width: 13.5rem;
     padding-inline-start: 10px;
     padding-inline-end: 10px;
 }
@@ -90,19 +209,27 @@ hr {
     display: flex;
     place-content: center;
     place-items: center;
-    background-color: rgb(80, 80, 80);
     cursor: pointer;
     margin-bottom: 0px;
     padding-bottom: 0px;
+    background-color: var(--primary-color);
+}
+
+.navbar-toggler-icon {
+    z-index: 2;
+    color: white;
+}
+
+.main__title__dropdown:hover {
+    background-color: var(--addItem-dropdown-color);
 }
 
 .main__title__dropdown span {
-   padding-bottom: 2.2vh;
-   font-size: 20px;
+   padding-bottom: 3vh;
 }
 
 .main__title__dropdown__inner {
-    background-color: rgb(80, 80, 80);
+    background-color: var(--primary-color);
 }
 
 .dropdown__addItem__form {
@@ -129,7 +256,7 @@ hr {
     height: 39px;
     border-radius: 2rem;
     padding: 10px;
-    background-color: white;
+    background-color: var(--addItem-btn-color);
 }
 
 .dropdown__addItem__input__field {
@@ -152,69 +279,111 @@ hr {
 /* the item cards */
 .main__card__title {
     font-size: 1.15rem;
-    background-color:rgb(80, 80, 80);
+    background-color: var(--primary-color);
+}
+
+.main__card__urgent {
+    display: flex;
+    align-items: center;
+    padding-top: 0.5vh;
+    padding-left: 1vw;
 }
 
 .main__card__info {
     font-size: 1.1rem;
-    background-color: rgb(100, 100, 100);
+    background-color: var(--card-info-background);
 }
 
-/* signin page */
+
+/* pages */
 
 .signinPage {
     padding-top: 2rem;
     overflow: hidden;
-    height: 55rem;
-    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
-    color: white;
+    height: 100vh;
+    background: var(--standard-background);
+    color: var(--text-color);
 }
 
 
 .signupPage {
     padding-top: 2rem;
     overflow: hidden;
-    height: 55rem;
-    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
-    color: white;
+    height: 100vh;
+    background: var(--standard-background);
+    color: var(--text-color);
 }
 
 .contactPage {
-    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
-    color: white;
-    height: 55rem;
+    height: 100vh;
+    background: var(--standard-background);
+    color: var(--text-color);
 }
 
 .updatePage {
     padding-top: 2rem;
-    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
-    color: white;
-    height: 55rem;
+    height: 100vh;
+    background: var(--standard-background);
+    color: var(--text-color);
+}
+
+.changePassword {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 2px;
 }
 
 .forgotPasswordPage {
     padding-top: 3rem;
-    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
-    color: white;
-    height: 55rem;
+    height: 100vh;
+    background: var(--standard-background);
+    color: var(--text-color);
 }
 
 .resetPasswordPage {
     padding-top: 3rem;
-    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
-    color: white;
-    height: 55rem;
+    height: 100vh;
+    background: var(--standard-background);
+    color: var(--text-color);
 }
 
 .activateAcountPage {
     padding-top: 3rem;
-    background: radial-gradient(circle, rgba(60,60,60,1) 0%, rgba(34,34,34,1) 80%);
-    color: white;
-    height: 55rem;
+    height: 100vh;
+    background: var(--standard-background);
+    color: var(--text-color);
 }
 
+/* settings dropdown */
 
-
-
-
-
+.dropbtn {
+    font-size: 16px;
+    border: none;
+    width: fit-content;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    place-content: center;
+    background-color: var(--primary-color);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: var(--text-color);
+    padding: 10px;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: var(--card-info-background);}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: var(--app-body-background)}

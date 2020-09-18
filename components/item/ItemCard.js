@@ -1,8 +1,10 @@
 import moment from 'moment';
 import { updateItem, removeItem } from '../../actions/item';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
 import CreateIcon from '@material-ui/icons/Create';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
+import LowPriorityIcon from '@material-ui/icons/LowPriority';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import Checkbox from 'rc-checkbox';
@@ -106,72 +108,75 @@ const ItemCard = ({ item, updateParent }) => {
     return (
         <div className='lead pb-3 main__card'>
             <header className='main__card__title'>
-                <div className='row' style={{display: 'flex', verticalAlign: 'center'}}>
-                    <div style={{display: 'flex', verticalAlign: 'center'}} className='row col-md-8'>
-                        <div className='col-md-4' style={{paddingLeft: '1.5vw'}}>
-                            <h3 className='pt-1 pb-2 mb-0 font-weight-bold'>{name}</h3>
-                        </div>
-                        <div className='col-md-4' style={{display: 'grid', placeItems: 'center', paddingRight: '10vw'}}>
-                            <p className='mb-0 font-weight-bold'>Amount: {amount} </p>
-                        </div>
-                        <div className='pt-1 col-md-4'>
-                            <p className='pt-2 mb-0'>
-                                Added by {item.postedBy} {moment(item.createdAt).fromNow()}
-                            </p>
-                        </div>
-                    </div>
-                    <div className='row col-md-4' style={{paddingLeft: '9vw'}}> 
-                       <div onClick={plusAmount}>
-                            <IconButton>
-                                <AddIcon />
-                            </IconButton>
-                       </div>
-                       <div onClick={minusAmount}>
-                            <IconButton >
-                                <RemoveIcon />
-                            </IconButton>
-                       </div>
-                       {urgent && (
-                            <div style={{display: "flex", alignItems: 'center', paddingTop: '0.5vh', paddingLeft: '1vw'}}>
-                                <label>
-                                    <Checkbox defaultChecked onChange={toggleUrgent} />
-                                    <span className='pl-1'>Urgent</span>
-                                </label>
+                <div className='container-fluid'>
+                    <div className='row placeCenter'>
+                        <div className='row col justify-content-end'> 
+                            <div className='pl-1 placeCenter' onClick={boughtItem}>
+                                <IconButton>
+                                    <DeleteIcon />
+                                </IconButton>
                             </div>
-                        )}
-                        {!urgent && (
-                            <div style={{display: "flex", alignItems: 'center', paddingTop: '0.5vh', paddingLeft: '1vw'}}>
-                                <label>
-                                    <Checkbox onChange={toggleUrgent} />
-                                    <span className='pl-1'>Urgent</span>
-                                </label>
-                            </div>
-                        )}
-                        <div>
-                            <div className='pl-3' onClick={updateNote}>
+                            <div className='pl-1 placeCenter' onClick={updateNote}>
                                 <IconButton>
                                     <CreateIcon />
                                 </IconButton>
                             </div>
+                            {urgent && (
+                                <div className='main__card__urgent'>
+                                    <a title='Urgent'>
+                                        <label className='pr-1'> 
+                                            <Checkbox defaultChecked onChange={toggleUrgent} />
+                                            <span className='pl-1'>
+                                                <PriorityHighIcon style={{color: '#3dbcf6', fontSize: '15px'}}/>
+                                            </span>
+                                        </label>
+                                    </a>
+                                </div>
+                            )}
+                            {!urgent && (
+                                <div className='main__card__urgent'>
+                                    <a title='Not Urgent'>
+                                        <label className='pr-1'>
+                                            <Checkbox onChange={toggleUrgent} />
+                                            <span className='pl-1'>
+                                                <LowPriorityIcon style={{color: 'white', fontSize: '15px'}}/>
+                                            </span>
+                                        </label>
+                                    </a>
+                                </div>
+                            )}
+                            <div className='pl-1'>
+                                <div onClick={plusAmount} style={{zIndex: '2'}}>
+                                    <IconButton style={{width: '20px', height: '20px', zIndex: '1'}}>
+                                        <ArrowUpwardIcon style={{fontSize: '17px', zIndex: '1'}} />
+                                    </IconButton>
+                                </div>
+                                <div onClick={minusAmount} style={{zIndex: '2'}}>
+                                    <IconButton style={{width: '20px', height: '20px', zIndex: '1'}} >
+                                        <ArrowDownwardIcon style={{fontSize: '17px', zIndex: '1'}} />
+                                    </IconButton>
+                                </div>
+                            </div>
                         </div>
-                        <div className='pl-3' onClick={boughtItem}>
-                            <IconButton>
-                                <DeleteIcon />
-                            </IconButton>
+                        <div className='placeCenter row col-6 justify-content-start pl-0 pr-0'>
+                            <div className='col justify-content-start placeCenter'>
+                                <a>
+                                    <h3 style={{float: 'left'}} className='pt-1 pb-0 pl-1 pr-2 mb-0 font-weight-bold placeCenter'>{amount} </h3>
+                                </a>
+                                <a title={`Added by ${item.postedBy} ${moment(item.createdAt).fromNow()}`}>
+                                    <h3 style={{float: 'left'}} className='pt-1 pb-0  pl-2  mb-0 font-weight-bold placeCenter'>{name}</h3>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </header>
             
-            {note && (<div className='main__card__info pl-1'>
+            {note && (<div className='main__card__info'>
                 <section>
-                    <div className='row pl-3'>
-                        <div style={{display: 'grid', placeContent: 'center'}}>
-                            <div className='pl-3 pt-1 pb-1'>
-                                <p style={{marginBottom: '0px'}}>Note: {note}</p>
-                            </div>
+                        <div className='pt-1 pl-2 pb-1'>
+                            <p style={{marginBottom: '0px'}}>Note: {note}</p>
                         </div>
-                    </div>
                 </section>
             </div>)}
       </div>

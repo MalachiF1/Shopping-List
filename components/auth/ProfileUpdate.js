@@ -81,7 +81,7 @@ const ProfileUpdate = () => {
     };
 
     const profileUpdateForm = () => (
-        <form style={{width: '700px', paddingTop: '50px', }} onSubmit={handleSubmit}>
+        <form style={{width: '50vw', paddingTop: '50px'}} onSubmit={handleSubmit}>
             <div>
                 <div className="form-group">
                     <label className="text-muted">Username</label>
@@ -94,7 +94,7 @@ const ProfileUpdate = () => {
                     <input onChange={handleChange('name')} type="text" value={name} className="form-control" />
                 </div>
             </div>
-            <div className='card pl-2 pr-2 pb-2 pt-2' style={{backgroundColor: 'rgb(39, 39, 39)'}}>
+            <div className='card pl-2 pr-2 pb-2 pt-2 changePassword' >
                 <div className="form-group">
                     <label className="text-muted">Old Password</label>
                     <input onChange={handleChange('oldPassword')} type="password" value={oldPassword} className="form-control" />
