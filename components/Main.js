@@ -1,6 +1,7 @@
 import { getItems } from '../actions/item';
-import ItemCard from '../components/item/ItemCard';
+import ItemCardSmall from './item/ItemCardSmall';
 import { getCookie } from '../actions/auth';
+import ItemCard from './item/ItemCard';
 import { useState, useEffect } from 'react';
 import Search from './item/Search';
 import Checkbox from 'rc-checkbox';
@@ -11,9 +12,10 @@ const Main = () => {
 	const [token, setToken] = useState('');
 	const [items, setItems] = useState([]);
 	const [allItems, setAllItems] = useState([]);
+	const [windowWidth, setWindowWidth] = useState(0);
 
 	let firstTime = true;
-	    useEffect(() => {
+	useEffect(() => {
 		initItems();
 		if (firstTime) {
 			eventHub.on('itemAdded', () => {
@@ -21,6 +23,7 @@ const Main = () => {
 			});
 			firstTime = false;
 		}
+		setWindowWidth(window.innerWidth);
 	}, []);
 
 	const initItems = () => {
@@ -36,14 +39,32 @@ const Main = () => {
 		setToken(tempToken);
 	};
 
+	const getWindowSize = () => {
+		setWindowWidth(window.innerWidth);
+	};
+
+	if (process.browser) {
+		window.addEventListener('resize', getWindowSize);
+	}
+
 	const showItems = () => {
-		return items.map(item => {
-			return (
-				<article key={item._id}>
-					<ItemCard item={item} updateParent={updateItemsState} />
-				</article>
-			);
-		});
+		if (windowWidth > 890) {
+			return items.map(item => {
+				return (
+					<article key={item._id}>
+						<ItemCard item={item} updateParent={updateItemsState} />
+					</article>
+				);
+			});
+		} else {
+			return items.map(item => {
+				return (
+					<article key={item._id}>
+						<ItemCardSmall item={item} updateParent={updateItemsState} />
+					</article>
+				);
+			});
+		}
 	};
 
 	const handleUrgentToggle = () => {
@@ -99,10 +120,10 @@ const Main = () => {
 	};
 
 	const showDropDown = () => {
-		console.log('hello')
+		console.log('hello');
 		const dropdown = document.getElementById('addItemDropdown');
 		if (dropdown.style.display === 'none') {
-			dropdown.style.display ='block';
+			dropdown.style.display = 'block';
 		} else {
 			dropdown.style.display = 'none';
 		}
@@ -120,23 +141,33 @@ const Main = () => {
 							<Search updateParent={toggleSearchSort} />
 						</div>
 						<div className='ml-3 pt-2'>
-							<label style={{display: 'flex', placeContent: 'center', placeItems: 'center',}}>
+							<label
+								style={{
+									display: 'flex',
+									placeContent: 'center',
+									placeItems: 'center',
+								}}
+							>
 								<Checkbox id='sort-urgent' onChange={handleUrgentToggle} />
 								<span className='pl-1 pb-1'>Sort Urgent</span>
 							</label>
 						</div>
 					</div>
-					<hr className='mb-0 pb-0'/>
+					<hr className='mb-0 pb-0' />
 					<div className='main__title__dropdown mt-3 pb-0' onClick={showDropDown}>
 						<span>Add Item</span>
 					</div>
-					<div id='addItemDropdown' className='main__title__dropdown__inner' style={{display: 'none'}}>
-						<hr className='mt-0 pt-0'/>
+					<div
+						id='addItemDropdown'
+						className='main__title__dropdown__inner'
+						style={{ display: 'none' }}
+					>
+						<hr className='mt-0 pt-0' />
 						<AddItem />
 					</div>
 				</div>
 			</div>
-			<hr className='ml-0 mr-0 mt-3'/>
+			<hr className='ml-0 mr-0 mt-3' />
 			<div className='main__body'>{showItems()}</div>
 		</div>
 	);

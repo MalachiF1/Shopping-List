@@ -36,24 +36,24 @@ const Header = () => {
 
 	useEffect(() => {
 		init();
-	}, [])
+	}, []);
 
 	const init = () => {
-		if(isAuth()) {
+		if (isAuth()) {
 			const tempToken = getCookie('token');
 			getSettings(tempToken).then(data => {
-				if(data.error) {
+				if (data.error) {
 					console.log(data.error);
 				}
 				setTheme(data.theme);
-				document.documentElement.setAttribute('data-theme', data.theme)
+				document.documentElement.setAttribute('data-theme', data.theme);
 			});
 			setToken(tempToken);
 		} else {
 			document.documentElement.setAttribute('data-theme', 'dark');
 			setTheme('dark');
 		}
-	}
+	};
 
 	const toggle = () => {
 		setIsOpen(!isOpen);
@@ -61,10 +61,10 @@ const Header = () => {
 
 	const toggleTheme = () => {
 		const currentTheme = document.documentElement.getAttribute('data-theme');
-		if(currentTheme === 'dark' || !currentTheme) {
+		if (currentTheme === 'dark' || !currentTheme) {
 			document.documentElement.setAttribute('data-theme', 'light');
 			updateSettings(token, {
-				theme: 'light'
+				theme: 'light',
 			});
 			setTheme('light');
 		} else {
@@ -81,14 +81,11 @@ const Header = () => {
 	return (
 		<React.Fragment>
 			<Head>
-				<link
-					rel='icon'
-					href={`${DOMAIN}/static/images/shopping-cart.png`}
-				/>
+				<link rel='icon' href={`${DOMAIN}/static/images/shopping-cart.png`} />
 			</Head>
 			<Navbar color={theme} expand='md'>
 				<Link href='/'>
-					<NavLink className='font-weight-bold navbarLink' style={{color: textColor}}>
+					<NavLink className='font-weight-bold navbarLink' style={{ color: textColor }}>
 						<div>
 							<img
 								src={`${DOMAIN}/static/images/shopping-cart.png`}
@@ -100,21 +97,28 @@ const Header = () => {
 					</NavLink>
 				</Link>
 
-				<NavbarToggler onClick={toggle}/>
+				<NavbarToggler onClick={toggle} />
+
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className='ml-auto' navbar>
 						{!isAuth() && (
 							<React.Fragment>
 								<NavItem>
 									<Link href='/signin'>
-										<NavLink className='navbarLink' style={{color: textColor}}>
+										<NavLink
+											className='navbarLink'
+											style={{ color: textColor }}
+										>
 											Signin
 										</NavLink>
 									</Link>
 								</NavItem>
 								<NavItem>
 									<Link href='/signup'>
-										<NavLink className='navbarLink' style={{color: textColor}}>
+										<NavLink
+											className='navbarLink'
+											style={{ color: textColor }}
+										>
 											Signup
 										</NavLink>
 									</Link>
@@ -137,7 +141,7 @@ const Header = () => {
 						{isAuth() && (
 							<NavItem>
 								<Link href='/user/update'>
-									<NavLink className='navbarLink' style={{color: textColor}}>
+									<NavLink className='navbarLink' style={{ color: textColor }}>
 										Update Profile
 									</NavLink>
 								</Link>
@@ -147,7 +151,7 @@ const Header = () => {
 						{isAuth() && (
 							<NavItem>
 								<Link href='/contact'>
-									<NavLink className='navbarLink' style={{color: textColor}}>
+									<NavLink className='navbarLink' style={{ color: textColor }}>
 										Contact
 									</NavLink>
 								</Link>
@@ -158,7 +162,7 @@ const Header = () => {
 							<NavItem>
 								<NavLink
 									className='navbarLink'
-									style={{color: textColor}}
+									style={{ color: textColor }}
 									onClick={() => signout(() => Router.replace(`/signin`))}
 								>
 									Signout

@@ -7,65 +7,79 @@ import SearchIcon from '@material-ui/icons/Search';
 import { IconButton } from '@material-ui/core';
 
 const Search = ({ updateParent }) => {
-    const [token, setToken] = useState('');
-    const [values, setValues] = useState({
-        search: undefined,
-        results: [],
-        searched: false,
-        message: ''
-    });
+	const [token, setToken] = useState('');
+	const [values, setValues] = useState({
+		search: undefined,
+		results: [],
+		searched: false,
+		message: '',
+	});
 
-    const { search, results, searched, message } = values;
+	const { search, results, searched, message } = values;
 
-    useEffect(() => {
-        init();
-    }, []);
+	useEffect(() => {
+		init();
+	}, []);
 
-    const init = () => {
-        setToken(getCookie('token'));
-    };
+	const init = () => {
+		setToken(getCookie('token'));
+	};
 
-    const searchSubmit = e => {
-        e.preventDefault();
-        listSearch({ search }, token).then(data => {
-            if (data.length === 1){
-                setValues({ ...values, results: data, searched: true, message: `${data.length} item found` });
-            } else {
-                setValues({ ...values, results: data, searched: true, message: `${data.length} items found` });
-            }
-            
-            updateParent(data, true);
-        });
-    };
+	const searchSubmit = e => {
+		e.preventDefault();
+		listSearch({ search }, token).then(data => {
+			if (data.length === 1) {
+				setValues({
+					...values,
+					results: data,
+					searched: true,
+					message: `${data.length} item found`,
+				});
+			} else {
+				setValues({
+					...values,
+					results: data,
+					searched: true,
+					message: `${data.length} items found`,
+				});
+			}
 
-    const handleChange = e => {
-        setValues({ ...values, search: e.target.value, searched: false, results: [] });
-        if (!e.target.value) {
-            updateParent([], false);
-        }
-    };
+			updateParent(data, true);
+		});
+	};
 
+	const handleChange = e => {
+		setValues({ ...values, search: e.target.value, searched: false, results: [] });
+		if (!e.target.value) {
+			updateParent([], false);
+		}
+	};
 
-    const searchForm = () => (
-        <form onSubmit={searchSubmit}>
-            <div className='row main__filters__search'>
-                <div onClick={searchSubmit}>
-                    <IconButton>
-                        <SearchIcon />
-                    </IconButton>
-                </div>
-                <div className='pr-2' style={{display: 'flex', placeItems: "center"}}>
-                    <input type="search" className='main__filters__search__searchbar' placeholder="Search items" onChange={handleChange} />
-                </div>
-            </div>
-        </form>
-    );
+	const searchForm = () => (
+		<form onSubmit={searchSubmit}>
+			<div className='row main__filters__search'>
+				<div onClick={searchSubmit}>
+					<IconButton className='main__filters__search__btn'>
+						<SearchIcon />
+					</IconButton>
+				</div>
+				<div className='pr-2 placeCenter'>
+					<input
+						type='search'
+						className='main__filters__search__searchbar'
+						placeholder='Search items'
+						onChange={handleChange}
+					/>
+				</div>
+			</div>
+		</form>
+	);
 
-    return (
-        <div className="container-fluid">
-            <div>{searchForm()}</div>
-        </div>
-    );
+	return (
+		<div className='container-fluid'>
+			<div>{searchForm()}</div>
+		</div>
+	);
 };
 
 export default Search;
