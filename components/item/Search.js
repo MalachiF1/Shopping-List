@@ -58,12 +58,12 @@ const Search = ({ updateParent }) => {
 	const searchForm = () => (
 		<form onSubmit={searchSubmit}>
 			<div className='row main__filters__search'>
-				<div onClick={searchSubmit}>
-					<IconButton className='main__filters__search__btn'>
+				<div onClick={searchSubmit} className='placeCenter'>
+					<IconButton>
 						<SearchIcon />
 					</IconButton>
 				</div>
-				<div className='pr-2 placeCenter'>
+				<div className='pr-1' style={{ display: 'grid', placeContent: 'center' }}>
 					<input
 						type='search'
 						className='main__filters__search__searchbar'

@@ -137,7 +137,7 @@ const Main = () => {
 						<h2>Shopping List</h2>
 					</div>
 					<div className='row main__filters'>
-						<div className='main__filters__search'>
+						<div>
 							<Search updateParent={toggleSearchSort} />
 						</div>
 						<div className='ml-3 pt-2'>
@@ -155,7 +155,7 @@ const Main = () => {
 					</div>
 					<hr className='mb-0 pb-0' />
 					<div className='main__title__dropdown mt-3 pb-0' onClick={showDropDown}>
-						<span>Add Item</span>
+						<a>Add Item</a>
 					</div>
 					<div
 						id='addItemDropdown'
