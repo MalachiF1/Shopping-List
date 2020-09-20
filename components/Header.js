@@ -23,7 +23,6 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { IconButton, ThemeProvider } from '@material-ui/core';
 import { getSettings, updateSettings } from '../actions/user';
 import { getCookie } from '../actions/auth';
-import { red } from '@material-ui/core/colors';
 
 Router.onRouteChangeStart = url => NProgress.start();
 Router.onRouteChangeComplete = url => NProgress.done();
@@ -77,13 +76,15 @@ const Header = () => {
 	};
 
 	const textColor = theme === 'dark' ? 'white' : 'black';
+	const togglerThemeDark = theme === 'dark' ? true : false;
+	const togglerThemeLight = theme === 'light' ? true : false;
 
 	return (
 		<React.Fragment>
 			<Head>
 				<link rel='icon' href={`${DOMAIN}/static/images/shopping-cart.png`} />
 			</Head>
-			<Navbar color={theme} expand='md'>
+			<Navbar color={theme} dark={togglerThemeDark} light={togglerThemeLight} expand='md'>
 				<Link href='/'>
 					<NavLink className='font-weight-bold navbarLink' style={{ color: textColor }}>
 						<div>
@@ -103,20 +104,32 @@ const Header = () => {
 					<Nav className='ml-auto' navbar>
 						{!isAuth() && (
 							<React.Fragment>
-								<NavItem>
+								<NavItem
+									style={{
+										display: 'flex',
+										flexDirection: 'column',
+										justifyContent: 'center',
+									}}
+								>
 									<Link href='/signin'>
 										<NavLink
-											className='navbarLink'
+											className='navbarLink pb-1 pt-1'
 											style={{ color: textColor }}
 										>
 											Signin
 										</NavLink>
 									</Link>
 								</NavItem>
-								<NavItem>
+								<NavItem
+									style={{
+										display: 'flex',
+										flexDirection: 'column',
+										justifyContent: 'center',
+									}}
+								>
 									<Link href='/signup'>
 										<NavLink
-											className='navbarLink'
+											className='navbarLink pb-1 pt-1'
 											style={{ color: textColor }}
 										>
 											Signup
@@ -139,9 +152,18 @@ const Header = () => {
 							</div>
 						)}
 						{isAuth() && (
-							<NavItem>
+							<NavItem
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+								}}
+							>
 								<Link href='/user/update'>
-									<NavLink className='navbarLink' style={{ color: textColor }}>
+									<NavLink
+										className='navbarLink pb-1 pt-1'
+										style={{ color: textColor }}
+									>
 										Update Profile
 									</NavLink>
 								</Link>
@@ -149,9 +171,18 @@ const Header = () => {
 						)}
 
 						{isAuth() && (
-							<NavItem>
+							<NavItem
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+								}}
+							>
 								<Link href='/contact'>
-									<NavLink className='navbarLink' style={{ color: textColor }}>
+									<NavLink
+										className='navbarLink pb-1 pt-1'
+										style={{ color: textColor }}
+									>
 										Contact
 									</NavLink>
 								</Link>
@@ -159,9 +190,15 @@ const Header = () => {
 						)}
 
 						{isAuth() && (
-							<NavItem>
+							<NavItem
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+								}}
+							>
 								<NavLink
-									className='navbarLink'
+									className='navbarLink pb-1 pt-1'
 									style={{ color: textColor }}
 									onClick={() => signout(() => Router.replace(`/signin`))}
 								>

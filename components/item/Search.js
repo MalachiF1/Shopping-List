@@ -63,7 +63,7 @@ const Search = ({ updateParent }) => {
 						<SearchIcon />
 					</IconButton>
 				</div>
-				<div className='pr-1' style={{ display: 'grid', placeContent: 'center' }}>
+				<div style={{ display: 'grid', placeContent: 'center' }}>
 					<input
 						type='search'
 						className='main__filters__search__searchbar'

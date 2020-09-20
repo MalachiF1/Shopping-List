@@ -6,7 +6,6 @@ class MyDocument extends Document {
 			<Html lang='en'>
 				<Head>
 					<meta charSet='UTF-8' />
-					{<meta name='color-scheme' content='dark light' />}
 					<link
 						rel='stylesheet'
 						href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css'

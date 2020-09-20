@@ -261,8 +261,8 @@ const ItemCard = ({ item, updateParent }) => {
 			{note && (
 				<div className='main__card__info'>
 					<section>
-						<div className='pt-1 pb-1'>
-							<p style={{ marginBottom: '0px', paddingLeft: '35px' }}>Note: {note}</p>
+						<div className='pt-1 pb-1 pl-2'>
+							<p style={{ marginBottom: '0px' }}>Note: {note}</p>
 						</div>
 					</section>
 				</div>
