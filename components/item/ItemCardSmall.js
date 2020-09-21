@@ -36,6 +36,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 			urgent: item.urgent,
 			note: item.note,
 		});
+		setNewNote(item.note);
 	};
 
 	useEffect(() => {
@@ -114,12 +115,12 @@ const ItemCardSmall = ({ item, updateParent }) => {
 	};
 
 	const getNoteForm = () => {
-		let popup = document.getElementById('myPopup');
+		let popup = document.getElementById(item.name + 'Popup');
 		popup.style.display = 'block';
 	};
 
 	const closePopup = () => {
-		let popup = document.getElementById('myPopup');
+		let popup = document.getElementById(item.name + 'Popup');
 		popup.style.display = 'none';
 	};
 
@@ -128,7 +129,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 	};
 
 	if (process.browser) {
-		let popup = document.getElementById('myPopup');
+		let popup = document.getElementById(item.name + 'Popup');
 		window.onclick = function (event) {
 			if (event.target == popup) {
 				popup.style.display = 'none';
@@ -244,7 +245,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 					</section>
 				</div>
 			)}
-			<div id='myPopup' className='popup'>
+			<div id={item.name + 'Popup'} className='popup'>
 				<div className='popup-content'>
 					<form onSubmit={updateNote}>
 						<span className='close pb-3' onClick={closePopup}>
@@ -253,6 +254,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 						<input
 							type='text'
 							placeholder='Update Note'
+							value={newNote}
 							className='form-control'
 							onChange={handlePopupChange}
 						/>
