@@ -23,6 +23,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 		success: false,
 		loading: false,
 	});
+	const [newNote, setNewNote] = useState('');
 
 	const { name, amount, urgent, note, error, success, loading } = values;
 
@@ -94,8 +95,8 @@ const ItemCardSmall = ({ item, updateParent }) => {
 		updateParent(item, 'urgent');
 	};
 
-	const updateNote = () => {
-		let newNote = prompt('Update Note:', note);
+	const updateNote = e => {
+		e.preventDefault();
 		if (newNote && newNote.length > 40) {
 			newNote = newNote.slice(0, 40);
 		}
@@ -111,6 +112,29 @@ const ItemCardSmall = ({ item, updateParent }) => {
 			token
 		);
 	};
+
+	const getNoteForm = () => {
+		let popup = document.getElementById('myPopup');
+		popup.style.display = 'block';
+	};
+
+	const closePopup = () => {
+		let popup = document.getElementById('myPopup');
+		popup.style.display = 'none';
+	};
+
+	const handlePopupChange = e => {
+		setNewNote(e.target.value);
+	};
+
+	if (process.browser) {
+		let popup = document.getElementById('myPopup');
+		window.onclick = function (event) {
+			if (event.target == popup) {
+				popup.style.display = 'none';
+			}
+		};
+	}
 
 	const boughtItem = () => {
 		removeItem(
@@ -133,7 +157,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 									<DeleteIcon />
 								</IconButton>
 							</div>
-							<div className='pl-1 placeCenter' onClick={updateNote}>
+							<div className='pl-1 placeCenter' onClick={getNoteForm}>
 								<IconButton>
 									<CreateIcon />
 								</IconButton>
@@ -220,6 +244,24 @@ const ItemCardSmall = ({ item, updateParent }) => {
 					</section>
 				</div>
 			)}
+			<div id='myPopup' className='popup'>
+				<div className='popup-content'>
+					<form onSubmit={updateNote}>
+						<span className='close' onClick={closePopup}>
+							&times;
+						</span>
+						<input
+							type='text'
+							placeholder='Update Note'
+							className='form-control'
+							onChange={handlePopupChange}
+						/>
+						<button type='submit' className='btn btn-primary mt-3'>
+							Update
+						</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	);
 };
