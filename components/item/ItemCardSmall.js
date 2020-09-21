@@ -247,7 +247,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 			<div id='myPopup' className='popup'>
 				<div className='popup-content'>
 					<form onSubmit={updateNote}>
-						<span className='close' onClick={closePopup}>
+						<span className='close pb-3' onClick={closePopup}>
 							&times;
 						</span>
 						<input
