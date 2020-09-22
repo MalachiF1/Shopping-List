@@ -48,7 +48,7 @@ const Main = () => {
 	}
 
 	const showItems = () => {
-		if (windowWidth > 890) {
+		if (windowWidth > 800) {
 			return items.map(item => {
 				return (
 					<article key={item._id}>
