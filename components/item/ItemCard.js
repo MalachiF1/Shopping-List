@@ -130,7 +130,11 @@ const ItemCard = ({ item, updateParent }) => {
 							</div>
 							<div className='row col-md-4 justify-content-end'>
 								<div className='row'>
-									<div onClick={plusAmount} style={{ zIndex: '2' }}>
+									<div
+										onClick={plusAmount}
+										className='placeCenter'
+										style={{ zIndex: '2' }}
+									>
 										<IconButton>
 											<AddIcon />
 										</IconButton>
@@ -138,6 +142,7 @@ const ItemCard = ({ item, updateParent }) => {
 									<div
 										onClick={minusAmount}
 										style={{ zIndex: '2', paddingRight: '10px' }}
+										className='placeCenter'
 									>
 										<IconButton>
 											<RemoveIcon />
