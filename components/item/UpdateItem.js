@@ -86,7 +86,10 @@ const UpdateItem = ({ item, updateParent }) => {
 	};
 
 	const showError = () => (
-		<div className='alert alert-danger mt-1' style={{ display: error ? '' : 'none' }}>
+		<div
+			className='alert alert-danger mt-1'
+			style={{ display: error ? '' : 'none', width: '25vw' }}
+		>
 			{error}
 		</div>
 	);
@@ -101,7 +104,10 @@ const UpdateItem = ({ item, updateParent }) => {
 	);
 
 	const showLoading = () => (
-		<div className='alert alert-info mt-1' style={{ display: loading ? '' : 'none' }}>
+		<div
+			className='alert alert-info mt-1'
+			style={{ display: loading ? '' : 'none', width: '25vw' }}
+		>
 			Loading...
 		</div>
 	);
