@@ -13,6 +13,7 @@ const Main = () => {
 	const [items, setItems] = useState([]);
 	const [allItems, setAllItems] = useState([]);
 	const [windowWidth, setWindowWidth] = useState(0);
+	const [success, setSucess] = useState(false);
 
 	let firstTime = true;
 	useEffect(() => {
@@ -23,6 +24,10 @@ const Main = () => {
 			});
 			firstTime = false;
 		}
+		eventHub.on('itemUpdated', () => {
+			setSucess(true);
+			setTimeout(() => setSucess(false), 3000);
+		});
 		setWindowWidth(window.innerWidth);
 	}, []);
 
@@ -45,6 +50,9 @@ const Main = () => {
 
 	if (process.browser) {
 		window.addEventListener('resize', getWindowSize);
+		window.addEventListener('click', e => {
+			setSucess(false);
+		});
 	}
 
 	const showItems = () => {
@@ -66,6 +74,15 @@ const Main = () => {
 			});
 		}
 	};
+
+	const showSuccess = () => (
+		<div
+			className='alert alert-success mt-3 placeCenter'
+			style={{ display: success ? '' : 'none', width: '100%' }}
+		>
+			Item Updated
+		</div>
+	);
 
 	const handleUrgentToggle = () => {
 		if (document.getElementById('sort-urgent').checked) {
@@ -153,6 +170,7 @@ const Main = () => {
 							</label>
 						</div>
 					</div>
+					<div>{showSuccess()}</div>
 					<hr className='mb-0 pb-0' />
 					<div className='main__title__dropdown mt-3 pb-0' onClick={showDropDown}>
 						<a>Add Item</a>

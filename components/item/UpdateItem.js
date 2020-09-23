@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Checkbox from 'rc-checkbox';
 import { updateItem } from '../../actions/item';
 import { getCookie } from '../../actions/auth';
+import eventHub from '../../helpers/eventHub';
 
 const UpdateItem = ({ item, updateParent }) => {
 	const [token, setToken] = useState('');
@@ -69,8 +70,12 @@ const UpdateItem = ({ item, updateParent }) => {
 				note: data.note,
 				success: true,
 				loading: false,
+				error: false,
 			});
 			updateParent(values);
+			let popup = document.getElementById(item.name + 'Popup');
+			popup.style.display = 'none';
+			eventHub.trigger('itemUpdated');
 		});
 	};
 
@@ -85,10 +90,23 @@ const UpdateItem = ({ item, updateParent }) => {
 		});
 	};
 
+	window.addEventListener('click', e => {
+		let popup = document.getElementById(item.name + 'Popup');
+		if (e.target === popup) {
+			popup.style.display = 'none';
+			setValues({
+				...values,
+				error: false,
+				success: false,
+				loading: false,
+			});
+		}
+	});
+
 	const showError = () => (
 		<div
-			className='alert alert-danger mt-1'
-			style={{ display: error ? '' : 'none', width: '25vw' }}
+			className='alert alert-danger mt-1, placeCenter'
+			style={{ display: error ? '' : 'none' }}
 		>
 			{error}
 		</div>
@@ -97,7 +115,7 @@ const UpdateItem = ({ item, updateParent }) => {
 	const showSuccess = () => (
 		<div
 			className='alert alert-success mt-3 placeCenter'
-			style={{ display: success ? '' : 'none', width: '25vw' }}
+			style={{ display: success ? '' : 'none' }}
 		>
 			Item Updated
 		</div>
@@ -105,8 +123,8 @@ const UpdateItem = ({ item, updateParent }) => {
 
 	const showLoading = () => (
 		<div
-			className='alert alert-info mt-1'
-			style={{ display: loading ? '' : 'none', width: '25vw' }}
+			className='alert alert-info mt-1 placeCenter mt-3'
+			style={{ display: loading ? '' : 'none' }}
 		>
 			Loading...
 		</div>
@@ -179,11 +197,12 @@ const UpdateItem = ({ item, updateParent }) => {
 						Update
 					</button>
 				</div>
-				<div className='placeCenter'>
-					{showSuccess()}
-					{showError()}
-					{showLoading()}
-				</div>
+				{
+					<div className='placeCenter'>
+						{showError()}
+						{showLoading()}
+					</div>
+				}
 			</form>
 		</div>
 	);
