@@ -106,7 +106,10 @@ const ItemCard = ({ item, updateParent }) => {
 							<div className='row col-md-8 justify-content-start placeCenter'>
 								<div className='col-md-2'>
 									<div className='row'>
-										<h3 className='pt-1 pb-0 mb-0 font-weight-bold placeCenter itemCard-text'>
+										<h3
+											className='pt-1 pb-0 mb-0 font-weight-bold itemCard-text'
+											style={{ display: 'grid', placeContent: 'center' }}
+										>
 											{name}
 										</h3>
 									</div>

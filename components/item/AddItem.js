@@ -1,13 +1,16 @@
 import { IconButton } from '@material-ui/core';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { useState, useEffect } from 'react';
-import { createItem } from '../../actions/item';
+import { createItem, searchHistory } from '../../actions/item';
 import { getCookie } from '../../actions/auth';
 import Checkbox from 'rc-checkbox';
 import eventHub from '../../helpers/eventHub';
+import moment from 'moment';
 
 const AddItem = () => {
 	const [token, setToken] = useState('');
+	const [history, setHistory] = useState([]);
+	const [windowSize, setwindowSize] = useState(0);
 	const [values, setValues] = useState({
 		name: '',
 		amount: 1,
@@ -26,15 +29,82 @@ const AddItem = () => {
 
 	const init = () => {
 		setToken(getCookie('token'));
+		setwindowSize(window.innerWidth);
 	};
 
-	const handleChange = name => e => {
-		let value;
-		value = e.target.value;
-		if (name === 'urgent') {
+	if (process.browser) {
+		window.addEventListener('resize', () => {
+			setwindowSize(window.innerWidth);
+		});
+	}
+
+	const hideSuggestions = () => {
+		setHistory([]);
+	};
+
+	const handleChange = type => e => {
+		let value = e.target.value;
+		if (type === 'urgent') {
 			value = document.getElementById('urgent-checkbox').checked;
 		}
-		setValues({ ...values, [name]: value, error: false, success: false, loading: false });
+		if (type === 'name') {
+			getSuggestions(value);
+		}
+		setValues({ ...values, [type]: value, error: false, success: false, loading: false });
+	};
+
+	const getSuggestions = search => {
+		if (search.trim().length > 0) {
+			searchHistory({ search }, token)
+				.then(data => {
+					if (data.length > 5) {
+						let lastHistory = data
+							.sort(
+								(a, b) =>
+									parseInt(new moment(b.updatedAt).format('YYYYMMDDhhmmss')) -
+									parseInt(new moment(a.updatedAt).format('YYYYMMDDhhmmss'))
+							)
+							.slice(0, 5);
+						setHistory(lastHistory);
+					} else {
+						setHistory(data);
+					}
+				})
+				.catch(err => console.log(err));
+		} else {
+			setHistory([]);
+		}
+	};
+
+	const showSuggestions = (history = []) => {
+		return (
+			<div
+				className='bg-white'
+				style={{ width: '13rem', borderRadius: '3px', marginTop: '1px' }}
+			>
+				{history.map((item, i) => {
+					return (
+						<div key={i} style={{ display: 'flex', flexDirection: 'row' }}>
+							<a onClick={() => fillSuggestion(item)} className='text-primary ml-2'>
+								{item.name}
+							</a>
+						</div>
+					);
+				})}
+			</div>
+		);
+	};
+
+	const fillSuggestion = item => {
+		setValues({
+			name: item.name,
+			amount: item.amount,
+			note: item.note,
+			urgent: item.urgent,
+		});
+		let checkbox = document.getElementById('urgent-checkbox');
+		checkbox.checked = item.urgent;
+		setHistory([]);
 	};
 
 	const handleSubmit = () => {
@@ -62,6 +132,7 @@ const AddItem = () => {
 					success: true,
 					loading: false,
 				});
+				setHistory([]);
 				eventHub.trigger('itemAdded');
 			}
 		});
@@ -85,45 +156,70 @@ const AddItem = () => {
 		</div>
 	);
 
+	let defaultMargin = windowSize > 520 ? 20 : 8;
+	let windowSizeModifire = windowSize > 520 ? 1 : 2;
+	let marginForSuggestion = (history.length * 25) / windowSizeModifire + defaultMargin + 'px';
+	let suggestionLeft = windowSize > 1840 ? 55 : windowSize > 520 ? 49 : 37;
+
 	return (
 		<form className='dropdown__addItem__form'>
-			<div className='dropdown__addItem__input'>
-				<label>
-					<span>Name:</span>
+			<div
+				className='dropdown__addItem__input'
+				style={{ position: 'relative' }}
+				id='name-input-container'
+			>
+				<label className='row mb-0' style={{ position: 'relative' }}>
+					<span style={{ display: 'grid', placeContent: 'center' }}>Name:</span>
 					<input
+						id='name-input'
 						onChange={handleChange('name')}
 						type='text'
 						value={name}
 						maxLength='20'
-						className='dropdown__addItem__input__field'
+						className='form-control dropdown__addItem__input__field'
 					/>
+					{history.length > 0 && (
+						<div
+							style={{
+								position: 'absolute',
+								top: '100%',
+								left: suggestionLeft,
+							}}
+						>
+							{showSuggestions(history)}
+						</div>
+					)}
 				</label>
 			</div>
-			<div className='dropdown__addItem__input'>
-				<label>
-					<span>Amount:</span>
+			<div
+				className='dropdown__addItem__input'
+				style={{ position: 'relative', marginTop: marginForSuggestion }}
+				onClick={hideSuggestions}
+			>
+				<label className='row'>
+					<span style={{ display: 'grid', placeContent: 'center' }}>Amount:</span>
 					<input
 						onChange={handleChange('amount')}
 						type='number'
 						value={amount}
 						min='1'
-						className='dropdown__addItem__input__field'
+						className='form-control dropdown__addItem__input__field'
 					/>
 				</label>
 			</div>
-			<div className='dropdown__addItem__input'>
-				<label>
-					<span>Note:</span>
+			<div className='dropdown__addItem__input' onClick={hideSuggestions}>
+				<label className='row'>
+					<span style={{ display: 'grid', placeContent: 'center' }}>Note:</span>
 					<input
 						onChange={handleChange('note')}
 						type='text'
 						value={note}
 						maxLength='40'
-						className='dropdown__addItem__input__field'
+						className='form-control dropdown__addItem__input__field'
 					/>
 				</label>
 			</div>
-			<div className='dropdown__addItem__input'>
+			<div className='dropdown__addItem__input' onClick={hideSuggestions}>
 				<label style={{ display: 'flex', placeContent: 'center', placeItems: 'center' }}>
 					<Checkbox
 						id='urgent-checkbox'

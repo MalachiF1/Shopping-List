@@ -93,7 +93,7 @@ const Header = () => {
 								alt='shopping cart'
 								style={{ width: '30px', height: 'auto' }}
 							/>
-							<span>{APP_NAME}</span>
+							<span>SHOPPING LIST</span>
 						</div>
 					</NavLink>
 				</Link>

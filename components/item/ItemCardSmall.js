@@ -103,8 +103,8 @@ const ItemCardSmall = ({ item, updateParent }) => {
 			<header className='main__card__title' style={{ color: urgent ? '#3dbcf6' : '' }}>
 				<div className='container-fluid'>
 					<div className='row justify-content-center'>
-						<div className='placeCenter row col-8 justify-content-start pl-0 pr-0'>
-							<div className='col justify-content-start placeCenter'>
+						<div className='placeCenter row col-8 justify-content-start pl-0 pr-0 ml-0 mr-0'>
+							<div className='col justify-content-start placeCenter p-0'>
 								<div className='pl-2'>
 									<div onClick={plusAmount} style={{ zIndex: '2' }}>
 										<IconButton
@@ -142,7 +142,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 								</a>
 							</div>
 						</div>
-						<div className='row col-4 justify-content-end'>
+						<div className='row col-4 justify-content-end ml-0 mr-0 pr-0 pl-0'>
 							<div className='col-6 pl-1 placeCenter' onClick={getPopupForm}>
 								<IconButton>
 									<CreateIcon />

@@ -137,7 +137,6 @@ const Main = () => {
 	};
 
 	const showDropDown = () => {
-		console.log('hello');
 		const dropdown = document.getElementById('addItemDropdown');
 		if (dropdown.style.display === 'none') {
 			dropdown.style.display = 'block';

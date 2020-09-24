@@ -66,7 +66,7 @@ const Search = ({ updateParent }) => {
 				<div style={{ display: 'grid', placeContent: 'center' }}>
 					<input
 						type='search'
-						className='main__filters__search__searchbar'
+						className='form-control main__filters__search__searchbar'
 						placeholder='Search items'
 						onChange={handleChange}
 					/>

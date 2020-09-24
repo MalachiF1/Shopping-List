@@ -28,7 +28,7 @@
 
 @media screen and (min-width: 1px) {
 	html {
-		font-size: 8.5px;
+		font-size: 9px;
 	}
 	.main__filters__search {
 		height: 3rem;
@@ -42,8 +42,9 @@
 		font-size: 12px;
 	}
 	.app__body {
-		height: 90vh;
-		width: 90vw;
+		height: 100vh;
+		width: 100vw;
+		border-radius: 0px;
 	}
 	.itemCard-text {
 		font-size: 12px;
@@ -52,11 +53,14 @@
 		z-index: 1;
 		font-size: 1px;
 	}
+	.dropdown__addItem__input {
+		margin-top: 8px;
+	}
 }
 
 @media screen and (min-width: 300px) {
 	html {
-		font-size: 8.5px;
+		font-size: 9px;
 	}
 	.main__filters__search {
 		height: 3rem;
@@ -70,8 +74,9 @@
 		font-size: 12px;
 	}
 	.app__body {
-		height: 90vh;
-		width: 90vw;
+		height: 100vh;
+		width: 100vw;
+		border-radius: 0px;
 	}
 	.itemCard-text {
 		font-size: 17px;
@@ -79,6 +84,9 @@
 	.itemCard-arrow {
 		z-index: 1;
 		font-size: 1px;
+	}
+	.dropdown__addItem__input {
+		margin-top: 8px;
 	}
 }
 
@@ -100,6 +108,7 @@
 	.app__body {
 		height: 85vh;
 		width: 80vw;
+		border-radius: 13px;
 	}
 	.itemCard-text {
 		font-size: 17px;
@@ -107,6 +116,9 @@
 	.itemCard-arrow {
 		font-size: 17px;
 		z-index: 1;
+	}
+	.dropdown__addItem__input {
+		margin-top: 20px;
 	}
 }
 
@@ -128,6 +140,7 @@
 	.app__body {
 		height: 85vh;
 		width: 70vw;
+		border-radius: 13px;
 	}
 	.itemCard-text {
 		font-size: 20px;
@@ -135,6 +148,9 @@
 	.itemCard-arrow {
 		font-size: 17px;
 		z-index: 1;
+	}
+	.dropdown__addItem__input {
+		margin-top: 20px;
 	}
 }
 
@@ -156,6 +172,7 @@
 	.app__body {
 		height: 85vh;
 		width: 70vw;
+		border-radius: 13px;
 	}
 	.itemCard-text {
 		font-size: 25px;
@@ -163,6 +180,9 @@
 	.itemCard-arrow {
 		font-size: 17px;
 		z-index: 1;
+	}
+	.dropdown__addItem__input {
+		margin-top: 20px;
 	}
 }
 
@@ -208,10 +228,8 @@ hr {
 .app__body {
 	display: flex;
 	box-shadow: -1px 4px 30px -2px rgba(0, 0, 0, 0.75);
-	border-radius: 13px;
 	border-width: 3px;
 	border-style: solid;
-	border-radius: 13px;
 	background-color: var(--app-body-background);
 	color: var(--text-color);
 	border-color: var(--app-body-border);
@@ -241,14 +259,14 @@ hr {
 }
 
 .main__filters__search {
-	border-radius: 15vw;
+	border-radius: 7px;
 	background-color: var(--primary-color);
 	display: flex;
 	place-content: center;
 }
 
 .main__filters__search__searchbar {
-	border-radius: 14vw;
+	border-radius: 7px;
 	border: none;
 	outline-width: 0;
 	padding-inline-start: 10px;
@@ -294,8 +312,7 @@ hr {
 }
 
 .dropdown__addItem__input {
-	margin-top: 1vh;
-	margin-bottom: 1vh;
+	margin-bottom: 0px;
 	display: flex;
 	align-items: center;
 	height: 39px;
@@ -315,11 +332,8 @@ hr {
 
 .dropdown__addItem__input__field {
 	border: none;
-	border-radius: 15px;
 	outline-width: 0;
 	margin-left: 10px;
-	padding-inline-start: 10px;
-	padding-inline-end: 10px;
 	height: 2.15rem;
 	width: 13rem;
 }
@@ -351,7 +365,7 @@ hr {
 /* pages */
 
 .signinPage {
-	padding-top: 2rem;
+	padding-top: 20vh;
 	overflow: hidden;
 	height: 100vh;
 	background: var(--standard-background);
@@ -359,7 +373,7 @@ hr {
 }
 
 .signupPage {
-	padding-top: 2rem;
+	padding-top: 20vh;
 	overflow: hidden;
 	height: 100vh;
 	background: var(--standard-background);
@@ -373,7 +387,7 @@ hr {
 }
 
 .updatePage {
-	padding-top: 2rem;
+	padding-top: 10vh;
 	height: 100vh;
 	background: var(--standard-background);
 	color: var(--text-color);

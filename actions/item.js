@@ -83,3 +83,18 @@ export const listSearch = (params, token) => {
 		})
 		.catch(err => console.log(err));
 };
+
+export const searchHistory = (params, token) => {
+	let query = queryString.stringify(params);
+	return fetch(`${API}/search-history?${query}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then(response => {
+			handleResponse(response);
+			return response.json();
+		})
+		.catch(err => console.log(err));
+};
