@@ -143,12 +143,12 @@ const ItemCardSmall = ({ item, updateParent }) => {
 							</div>
 						</div>
 						<div className='row col-4 justify-content-end ml-0 mr-0 pr-0 pl-0'>
-							<div className='col-6 pl-1 placeCenter' onClick={getPopupForm}>
+							<div className='col-6 placeCenter p-0' onClick={getPopupForm}>
 								<IconButton>
 									<CreateIcon />
 								</IconButton>
 							</div>
-							<div className='col-6 pl-1 placeCenter' onClick={boughtItem}>
+							<div className='col-6 placeCenter p-0' onClick={boughtItem}>
 								<IconButton>
 									<DeleteIcon />
 								</IconButton>
