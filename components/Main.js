@@ -1,4 +1,4 @@
-import { getItems } from '../actions/item';
+import { getItems, updateItem } from '../actions/item';
 import ItemCardSmall from './item/ItemCardSmall';
 import { getCookie } from '../actions/auth';
 import ItemCard from './item/ItemCard';
@@ -57,22 +57,110 @@ const Main = () => {
 
 	const showItems = () => {
 		if (windowWidth > 800) {
-			return items.map(item => {
-				return (
-					<article key={item._id}>
-						<ItemCard item={item} updateParent={updateItemsState} />
-					</article>
-				);
-			});
+			return items
+				.sort((a, b) => a.orderNum - b.orderNum)
+				.map(item => {
+					return (
+						<article
+							key={item._id}
+							id={item.slug}
+							draggable='true'
+							onDragStart={drag}
+							onDrop={drop}
+							onDragOver={allowDrop}
+						>
+							<ItemCard item={item} updateParent={updateItemsState} />
+						</article>
+					);
+				});
 		} else {
-			return items.map(item => {
-				return (
-					<article key={item._id}>
-						<ItemCardSmall item={item} updateParent={updateItemsState} />
-					</article>
+			return items
+				.sort((a, b) => a.orderNum - b.orderNum)
+				.map(item => {
+					return (
+						<article
+							key={item._id}
+							id={item.slug}
+							draggable='true'
+							onDragStart={drag}
+							onDrop={drop}
+							onDragOver={allowDrop}
+						>
+							<ItemCardSmall item={item} updateParent={updateItemsState} />
+						</article>
+					);
+				});
+		}
+	};
+
+	const allowDrop = e => {
+		e.preventDefault();
+	};
+
+	let draggedItem;
+	const drag = e => {
+		draggedItem = items.filter(current => {
+			if (current.slug === e.target.id) {
+				return true;
+			} else {
+				return false;
+			}
+		})[0];
+	};
+
+	const drop = e => {
+		e.preventDefault();
+		let currentSlug = e.target;
+		while (!currentSlug.id) {
+			currentSlug = currentSlug.parentNode;
+		}
+
+		let currentItem = items.filter(current => {
+			if (current.slug === currentSlug.id) {
+				return true;
+			} else {
+				return false;
+			}
+		})[0];
+
+		updateItem(
+			{
+				slug: draggedItem.slug,
+				orderNum: currentItem.orderNum,
+			},
+			token
+		).then(data => {
+			updateItem(
+				{
+					slug: currentItem.slug,
+					orderNum: draggedItem.orderNum,
+				},
+				token
+			).then(data => {
+				setItems(
+					items.map(current => {
+						if (current.slug === draggedItem.slug) {
+							return { ...current, orderNum: currentItem.orderNum };
+						} else if (current.slug === currentItem.slug) {
+							return { ...current, orderNum: draggedItem.orderNum };
+						} else {
+							return current;
+						}
+					})
+				);
+				setAllItems(
+					allItems.map(current => {
+						if (current.slug === draggedItem.slug) {
+							return { ...current, orderNum: currentItem.orderNum };
+						} else if (current.slug === currentItem.slug) {
+							return { ...current, orderNum: draggedItem.orderNum };
+						} else {
+							return current;
+						}
+					})
 				);
 			});
-		}
+		});
 	};
 
 	const showSuccess = () => (

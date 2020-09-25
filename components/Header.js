@@ -151,6 +151,7 @@ const Header = () => {
 								</div>
 							</div>
 						)}
+
 						{isAuth() && (
 							<NavItem
 								style={{
