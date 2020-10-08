@@ -153,10 +153,11 @@ const AddItem = () => {
 		</div>
 	);
 
-	let defaultMargin = windowSize > 520 ? 20 : 8;
+	let defaultMargin = windowSize > 520 ? 20 : 13;
 	let windowSizeModifire = windowSize > 520 ? 1 : 2;
-	let marginForSuggestion = (history.length * 25) / windowSizeModifire + defaultMargin + 'px';
-	let suggestionLeft = windowSize > 1840 ? 55 : windowSize > 520 ? 49 : 37;
+	let marginPer = windowSize > 520 ? history.length * 25 : history.length * 40;
+	let marginForSuggestion = marginPer / windowSizeModifire + defaultMargin + 'px';
+	let suggestionLeft = windowSize > 1840 ? 55 : windowSize > 520 ? 49 : 52;
 
 	return (
 		<form className='dropdown__addItem__form'>
