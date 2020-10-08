@@ -99,8 +99,12 @@ const Main = () => {
 
 	let draggedItem;
 	const drag = e => {
+		let currentSlug = e.target;
+		while (!currentSlug.id) {
+			currentSlug = currentSlug.parentNode;
+		}
 		draggedItem = items.filter(current => {
-			if (current.slug === e.target.id) {
+			if (current.slug === currentSlug.id) {
 				return true;
 			} else {
 				return false;

@@ -44,19 +44,19 @@ const ItemCardSmall = ({ item, updateParent }) => {
 	const plusAmount = () => {
 		setValues({
 			...values,
-			amount: amount + 1,
+			amount: parseFloat(parseFloat((amount + 1).toFixed(3)).toString()),
 		});
 		updateItem(
 			{
 				slug: item.slug,
-				amount: amount + 1,
+				amount: parseFloat(parseFloat((amount + 1).toFixed(3)).toString()),
 			},
 			token
 		);
 	};
 
 	const minusAmount = () => {
-		if (amount === 1) {
+		if (amount <= 1) {
 			removeItem(
 				{
 					slug: item.slug,
@@ -67,12 +67,12 @@ const ItemCardSmall = ({ item, updateParent }) => {
 		} else {
 			setValues({
 				...values,
-				amount: amount - 1,
+				amount: parseFloat(parseFloat((amount - 1).toFixed(3)).toString()),
 			});
 			updateItem(
 				{
 					slug: item.slug,
-					amount: amount - 1,
+					amount: parseFloat(parseFloat((amount - 1).toFixed(3)).toString()),
 				},
 				token
 			);
@@ -107,16 +107,12 @@ const ItemCardSmall = ({ item, updateParent }) => {
 							<div className='col justify-content-start placeCenter p-0'>
 								<div className='pl-2'>
 									<div onClick={plusAmount} style={{ zIndex: '2' }}>
-										<IconButton
-											style={{ width: '20px', height: '20px', zIndex: '1' }}
-										>
+										<IconButton style={{ width: '20px', height: '20px', zIndex: '1' }}>
 											<ArrowUpwardIcon className='itemCard-arrow' />
 										</IconButton>
 									</div>
 									<div onClick={minusAmount} style={{ zIndex: '2' }}>
-										<IconButton
-											style={{ width: '20px', height: '20px', zIndex: '1' }}
-										>
+										<IconButton style={{ width: '20px', height: '20px', zIndex: '1' }}>
 											<ArrowDownwardIcon className='itemCard-arrow' />
 										</IconButton>
 									</div>
@@ -128,9 +124,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 									{amount}{' '}
 								</h3>
 								<a
-									title={`Added by ${item.postedBy} ${moment(
-										item.createdAt
-									).fromNow()}`}
+									title={`Added by ${item.postedBy} ${moment(item.createdAt).fromNow()}`}
 									style={{ display: 'grid', placeContent: 'center' }}
 								>
 									<h3

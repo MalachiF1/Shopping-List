@@ -43,19 +43,19 @@ const ItemCard = ({ item, updateParent }) => {
 	const plusAmount = () => {
 		setValues({
 			...values,
-			amount: amount + 1,
+			amount: parseFloat(parseFloat((amount + 1).toFixed(3)).toString()),
 		});
 		updateItem(
 			{
 				slug: item.slug,
-				amount: amount + 1,
+				amount: parseFloat(parseFloat((amount + 1).toFixed(3)).toString()),
 			},
 			token
 		);
 	};
 
 	const minusAmount = () => {
-		if (amount === 1) {
+		if (amount <= 1) {
 			removeItem(
 				{
 					slug: item.slug,
@@ -66,12 +66,12 @@ const ItemCard = ({ item, updateParent }) => {
 		} else {
 			setValues({
 				...values,
-				amount: amount - 1,
+				amount: parseFloat(parseFloat((amount - 1).toFixed(3)).toString()),
 			});
 			updateItem(
 				{
 					slug: item.slug,
-					amount: amount - 1,
+					amount: parseFloat(parseFloat((amount - 1).toFixed(3)).toString()),
 				},
 				token
 			);
@@ -105,10 +105,7 @@ const ItemCard = ({ item, updateParent }) => {
 						<div className='row placeCenter'>
 							<div className='row col-md-8 justify-content-start placeCenter'>
 								<div className='col-md-2'>
-									<div
-										className=''
-										style={{ display: 'grid', placeContent: 'center' }}
-									>
+									<div className='' style={{ display: 'grid', placeContent: 'center' }}>
 										<h3
 											className='pt-1 pb-0 mb-0 font-weight-bold itemCard-text'
 											style={{ display: 'grid', placeContent: 'center' }}
@@ -117,13 +114,8 @@ const ItemCard = ({ item, updateParent }) => {
 										</h3>
 									</div>
 								</div>
-								<div
-									className='col-md-4'
-									style={{ display: 'grid', placeContent: 'center' }}
-								>
-									<p className='pt-1 pb-0 pr-2 mb-0 font-weight-bold placeCenter'>
-										Amount: {amount}
-									</p>
+								<div className='col-md-4' style={{ display: 'grid', placeContent: 'center' }}>
+									<p className='pt-1 pb-0 pr-2 mb-0 font-weight-bold placeCenter'>Amount: {amount}</p>
 								</div>
 								<div
 									className='col-md-6 placeCenter justify-content-center'
@@ -136,11 +128,7 @@ const ItemCard = ({ item, updateParent }) => {
 							</div>
 							<div className='row col-md-4 justify-content-end'>
 								<div className='row'>
-									<div
-										onClick={plusAmount}
-										className='placeCenter'
-										style={{ zIndex: '2' }}
-									>
+									<div onClick={plusAmount} className='placeCenter' style={{ zIndex: '2' }}>
 										<IconButton>
 											<AddIcon />
 										</IconButton>
@@ -174,11 +162,7 @@ const ItemCard = ({ item, updateParent }) => {
 						<div className='row placeCenter'>
 							<div className='row col-md-6 justify-content-start placeCenter'>
 								<div className='col-md-6'>
-									<a
-										title={`Added by ${item.postedBy} ${moment(
-											item.createdAt
-										).fromNow()}`}
-									>
+									<a title={`Added by ${item.postedBy} ${moment(item.createdAt).fromNow()}`}>
 										<h3 className='pt-1 pb-0 mb-0 font-weight-bold placeCenter itemCard-text'>
 											{name}
 										</h3>
@@ -197,10 +181,7 @@ const ItemCard = ({ item, updateParent }) => {
 											<AddIcon />
 										</IconButton>
 									</div>
-									<div
-										onClick={minusAmount}
-										style={{ zIndex: '2', paddingRight: '10px' }}
-									>
+									<div onClick={minusAmount} style={{ zIndex: '2', paddingRight: '10px' }}>
 										<IconButton>
 											<RemoveIcon />
 										</IconButton>

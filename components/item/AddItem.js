@@ -78,10 +78,7 @@ const AddItem = () => {
 
 	const showSuggestions = (history = []) => {
 		return (
-			<div
-				className='bg-white'
-				style={{ width: '13rem', borderRadius: '3px', marginTop: '1px' }}
-			>
+			<div className='bg-white' style={{ width: '13rem', borderRadius: '3px', marginTop: '1px' }}>
 				{history.map((item, i) => {
 					return (
 						<div key={i} style={{ display: 'flex', flexDirection: 'row' }}>
@@ -163,11 +160,7 @@ const AddItem = () => {
 
 	return (
 		<form className='dropdown__addItem__form'>
-			<div
-				className='dropdown__addItem__input'
-				style={{ position: 'relative' }}
-				id='name-input-container'
-			>
+			<div className='dropdown__addItem__input' style={{ position: 'relative' }} id='name-input-container'>
 				<label className='row mb-0' style={{ position: 'relative' }}>
 					<span style={{ display: 'grid', placeContent: 'center' }}>Name:</span>
 					<input
@@ -201,8 +194,9 @@ const AddItem = () => {
 					<input
 						onChange={handleChange('amount')}
 						type='number'
+						step='0.001'
 						value={amount}
-						min='1'
+						min='0.001'
 						className='form-control dropdown__addItem__input__field'
 					/>
 				</label>
@@ -221,11 +215,7 @@ const AddItem = () => {
 			</div>
 			<div className='dropdown__addItem__input' onClick={hideSuggestions}>
 				<label style={{ display: 'flex', placeContent: 'center', placeItems: 'center' }}>
-					<Checkbox
-						id='urgent-checkbox'
-						checked={urgent}
-						onChange={handleChange('urgent')}
-					/>
+					<Checkbox id='urgent-checkbox' checked={urgent} onChange={handleChange('urgent')} />
 					<span className='pl-1 pb-1'>Urgent</span>
 				</label>
 			</div>

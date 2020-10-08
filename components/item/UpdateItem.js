@@ -104,28 +104,19 @@ const UpdateItem = ({ item, updateParent }) => {
 	});
 
 	const showError = () => (
-		<div
-			className='alert alert-danger mt-1, placeCenter'
-			style={{ display: error ? '' : 'none' }}
-		>
+		<div className='alert alert-danger mt-1, placeCenter' style={{ display: error ? '' : 'none' }}>
 			{error}
 		</div>
 	);
 
 	const showSuccess = () => (
-		<div
-			className='alert alert-success mt-3 placeCenter'
-			style={{ display: success ? '' : 'none' }}
-		>
+		<div className='alert alert-success mt-3 placeCenter' style={{ display: success ? '' : 'none' }}>
 			Item Updated
 		</div>
 	);
 
 	const showLoading = () => (
-		<div
-			className='alert alert-info mt-1 placeCenter mt-3'
-			style={{ display: loading ? '' : 'none' }}
-		>
+		<div className='alert alert-info mt-1 placeCenter mt-3' style={{ display: loading ? '' : 'none' }}>
 			Loading...
 		</div>
 	);
@@ -158,8 +149,9 @@ const UpdateItem = ({ item, updateParent }) => {
 						<input
 							style={{ flexDirection: 'right' }}
 							type='number'
+							step='0.001'
 							placeholder='Update Amount'
-							min='1'
+							min='0.001'
 							value={amount}
 							className='form-control ml-2'
 							onChange={handleChange('amount')}
@@ -181,14 +173,8 @@ const UpdateItem = ({ item, updateParent }) => {
 					</label>
 				</div>
 				<div className='pb-2 pt-1'>
-					<label
-						style={{ display: 'flex', placeContent: 'center', placeItems: 'center' }}
-					>
-						<Checkbox
-							id={'updateUrgent' + name}
-							checked={urgent}
-							onChange={handleChange('urgent')}
-						/>
+					<label style={{ display: 'flex', placeContent: 'center', placeItems: 'center' }}>
+						<Checkbox id={'updateUrgent' + name} checked={urgent} onChange={handleChange('urgent')} />
 						<span className='pl-1 pb-1'>Urgent</span>
 					</label>
 				</div>
