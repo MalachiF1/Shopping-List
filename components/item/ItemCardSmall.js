@@ -139,7 +139,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 						</div>
 						<div className='row col-4 justify-content-end ml-0 mr-0 pr-0 pl-0'>
 							<div className='col-4 p-0' style={{ display: 'grid', placeContent: 'center' }}>
-								<a href={item.link}>
+								<a href={item.link} target='shufersal'>
 									<IconButton>
 										<LinkIcon />
 									</IconButton>

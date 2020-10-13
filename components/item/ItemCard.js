@@ -127,7 +127,7 @@ const ItemCard = ({ item, updateParent }) => {
 							</div>
 							<div className='row col-md-4 justify-content-end'>
 								<div style={{ display: 'grid', placeContent: 'center', paddingRight: '15px' }}>
-									<a href={item.link}>
+									<a href={item.link} target='shufersal'>
 										<IconButton>
 											<LinkIcon />
 										</IconButton>
@@ -182,7 +182,7 @@ const ItemCard = ({ item, updateParent }) => {
 							</div>
 							<div className='row col-md-6 justify-content-end'>
 								<div style={{ display: 'grid', placeContent: 'center', paddingRight: '15px' }}>
-									<a href={item.link}>
+									<a href={item.link} target='shufersal'>
 										<IconButton>
 											<LinkIcon />
 										</IconButton>
