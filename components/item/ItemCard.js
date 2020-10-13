@@ -3,11 +3,10 @@ import { updateItem, removeItem } from '../../actions/item';
 import CreateIcon from '@material-ui/icons/Create';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import UpdateItem from './UpdateItem';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Checkbox from 'rc-checkbox';
-import { IconButton } from '@material-ui/core';
+import LinkIcon from '@material-ui/icons/Link';
+import { Icon, IconButton } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { getCookie } from '../../actions/auth';
 
@@ -127,6 +126,13 @@ const ItemCard = ({ item, updateParent }) => {
 								</div>
 							</div>
 							<div className='row col-md-4 justify-content-end'>
+								<div style={{ display: 'grid', placeContent: 'center', paddingRight: '15px' }}>
+									<a href={item.link}>
+										<IconButton>
+											<LinkIcon />
+										</IconButton>
+									</a>
+								</div>
 								<div className='row'>
 									<div onClick={plusAmount} className='placeCenter' style={{ zIndex: '2' }}>
 										<IconButton>
@@ -175,6 +181,13 @@ const ItemCard = ({ item, updateParent }) => {
 								</div>
 							</div>
 							<div className='row col-md-6 justify-content-end'>
+								<div style={{ display: 'grid', placeContent: 'center', paddingRight: '15px' }}>
+									<a href={item.link}>
+										<IconButton>
+											<LinkIcon />
+										</IconButton>
+									</a>
+								</div>
 								<div className='row'>
 									<div onClick={plusAmount} style={{ zIndex: '2' }}>
 										<IconButton>

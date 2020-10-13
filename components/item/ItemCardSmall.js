@@ -3,11 +3,9 @@ import { updateItem, removeItem } from '../../actions/item';
 import CreateIcon from '@material-ui/icons/Create';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
-import LowPriorityIcon from '@material-ui/icons/LowPriority';
 import UpdateItem from './UpdateItem';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Checkbox from 'rc-checkbox';
+import LinkIcon from '@material-ui/icons/Link';
 import { IconButton } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { getCookie } from '../../actions/auth';
@@ -125,7 +123,10 @@ const ItemCardSmall = ({ item, updateParent }) => {
 								</h3>
 								<a
 									title={`Added by ${item.postedBy} ${moment(item.createdAt).fromNow()}`}
-									style={{ display: 'grid', placeContent: 'center' }}
+									style={{
+										display: 'grid',
+										placeContent: 'center',
+									}}
 								>
 									<h3
 										style={{ float: 'left' }}
@@ -137,12 +138,19 @@ const ItemCardSmall = ({ item, updateParent }) => {
 							</div>
 						</div>
 						<div className='row col-4 justify-content-end ml-0 mr-0 pr-0 pl-0'>
-							<div className='col-6 placeCenter p-0' onClick={getPopupForm}>
+							<div className='col-4 p-0' style={{ display: 'grid', placeContent: 'center' }}>
+								<a href={item.link}>
+									<IconButton>
+										<LinkIcon />
+									</IconButton>
+								</a>
+							</div>
+							<div className='col-4 placeCenter p-0' onClick={getPopupForm}>
 								<IconButton>
 									<CreateIcon />
 								</IconButton>
 							</div>
-							<div className='col-6 placeCenter p-0' onClick={boughtItem}>
+							<div className='col-4 placeCenter p-0' onClick={boughtItem}>
 								<IconButton>
 									<DeleteIcon />
 								</IconButton>
