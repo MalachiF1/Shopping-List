@@ -153,15 +153,19 @@ const AddItem = () => {
 		</div>
 	);
 
-	let defaultMargin = windowSize > 520 ? 20 : 13;
+	let defaultMargin = windowSize > 520 ? 20 : windowSize > 300 ? 13 : 0;
 	let windowSizeModifire = windowSize > 520 ? 1 : 2;
 	let marginPer = windowSize > 520 ? history.length * 25 : history.length * 40;
 	let marginForSuggestion = marginPer / windowSizeModifire + defaultMargin + 'px';
-	let suggestionLeft = windowSize > 1840 ? 55 : windowSize > 520 ? 49 : 52;
+	let suggestionLeft = windowSize > 1840 ? 55 : windowSize > 260 ? 49 : 45;
 
 	return (
 		<form className='dropdown__addItem__form'>
-			<div className='dropdown__addItem__input' style={{ position: 'relative' }} id='name-input-container'>
+			<div
+				className='dropdown__addItem__input'
+				style={{ position: 'relative', padding: '0px' }}
+				id='name-input-container'
+			>
 				<label className='row mb-0' style={{ position: 'relative' }}>
 					<span style={{ display: 'grid', placeContent: 'center' }}>Name:</span>
 					<input
@@ -185,7 +189,11 @@ const AddItem = () => {
 					)}
 				</label>
 			</div>
-			<div className='dropdown__addItem__input' style={{ position: 'relative' }} onClick={hideSuggestions}>
+			<div
+				className='dropdown__addItem__input'
+				style={{ position: 'relative', marginTop: marginForSuggestion }}
+				onClick={hideSuggestions}
+			>
 				<label className='row'>
 					<span style={{ display: 'grid', placeContent: 'center' }}>Amount:</span>
 					<input
@@ -198,7 +206,7 @@ const AddItem = () => {
 					/>
 				</label>
 			</div>
-			<div className='dropdown__addItem__input' onClick={hideSuggestions}>
+			<div className='dropdown__addItem__input' style={{ padding: '0px' }} onClick={hideSuggestions}>
 				<label className='row'>
 					<span style={{ display: 'grid', placeContent: 'center' }}>Note:</span>
 					<input

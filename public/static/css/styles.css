@@ -50,12 +50,12 @@
 		font-size: 1px;
 	}
 	.dropdown__addItem__input {
-		margin-top: 5px;
-		font-size: 13px;
+		margin-top: 0px;
+		font-size: 12px;
 	}
 	#dropdown__addItem__checkbox {
 		margin-top: 0px;
-		padding: 5px;
+		padding: 0px;
 	}
 }
 
@@ -88,7 +88,7 @@
 	}
 	.dropdown__addItem__input {
 		margin-top: 5px;
-		font-size: 14px;
+		font-size: 13px;
 	}
 	#dropdown__addItem__checkbox {
 		margin-top: 0px;
@@ -348,7 +348,7 @@ hr {
 	margin-bottom: 10px;
 	display: flex;
 	align-items: center;
-	height: 39px;
+	height: 37px;
 	border-radius: 5rem;
 	padding: 9px;
 	background-color: var(--addItem-btn-color);
