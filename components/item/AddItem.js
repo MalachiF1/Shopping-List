@@ -185,11 +185,7 @@ const AddItem = () => {
 					)}
 				</label>
 			</div>
-			<div
-				className='dropdown__addItem__input'
-				style={{ position: 'relative', marginTop: marginForSuggestion }}
-				onClick={hideSuggestions}
-			>
+			<div className='dropdown__addItem__input' style={{ position: 'relative' }} onClick={hideSuggestions}>
 				<label className='row'>
 					<span style={{ display: 'grid', placeContent: 'center' }}>Amount:</span>
 					<input
@@ -214,7 +210,7 @@ const AddItem = () => {
 					/>
 				</label>
 			</div>
-			<div className='dropdown__addItem__input' onClick={hideSuggestions}>
+			<div className='dropdown__addItem__input' id='dropdown__addItem__checkbox' onClick={hideSuggestions}>
 				<label style={{ display: 'flex', placeContent: 'center', placeItems: 'center' }}>
 					<Checkbox id='urgent-checkbox' checked={urgent} onChange={handleChange('urgent')} />
 					<span className='pl-1 pb-1'>Urgent</span>

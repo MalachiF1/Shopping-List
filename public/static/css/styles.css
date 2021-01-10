@@ -50,8 +50,12 @@
 		font-size: 1px;
 	}
 	.dropdown__addItem__input {
-		margin-top: 8px;
-		font-size: 15px;
+		margin-top: 5px;
+		font-size: 13px;
+	}
+	#dropdown__addItem__checkbox {
+		margin-top: 0px;
+		padding: 5px;
 	}
 }
 
@@ -83,8 +87,12 @@
 		font-size: 1px;
 	}
 	.dropdown__addItem__input {
-		margin-top: 8px;
-		font-size: 15px;
+		margin-top: 5px;
+		font-size: 14px;
+	}
+	#dropdown__addItem__checkbox {
+		margin-top: 0px;
+		padding: 5px;
 	}
 }
 
@@ -119,6 +127,11 @@
 		margin-top: 20px;
 		font-size: 15px;
 	}
+	#dropdown__addItem__checkbox {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding: 10px;
+	}
 }
 
 @media screen and (min-width: 900px) {
@@ -152,6 +165,11 @@
 		margin-top: 20px;
 		font-size: 14px;
 	}
+	#dropdown__addItem__checkbox {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding: 10px;
+	}
 }
 
 @media screen and (min-width: 1840px) {
@@ -184,6 +202,11 @@
 	.dropdown__addItem__input {
 		font-size: 16px;
 		margin-top: 20px;
+	}
+	#dropdown__addItem__checkbox {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding: 10px;
 	}
 }
 
@@ -322,12 +345,12 @@ hr {
 
 .dropdown__addItem__input__btn {
 	margin-top: 20px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	display: flex;
 	align-items: center;
 	height: 39px;
 	border-radius: 5rem;
-	padding: 10px;
+	padding: 9px;
 	background-color: var(--addItem-btn-color);
 }
 
