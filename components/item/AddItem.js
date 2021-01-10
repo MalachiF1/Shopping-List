@@ -153,11 +153,31 @@ const AddItem = () => {
 		</div>
 	);
 
-	let defaultMargin = windowSize > 520 ? 20 : windowSize > 300 ? 13 : 0;
+	let defaultMargin;
+	if (windowSize > 520) {
+		defaultMargin = 20;
+	} else if (windowSize > 300) {
+		defaultMargin = 5;
+	} else {
+		defaultMargin = 0;
+	}
+
+	let suggestionLeft;
+	if (windowSize > 1840) {
+		suggestionLeft = 55;
+	} else if (windowSize > 900) {
+		suggestionLeft = 49;
+	} else if (windowSize > 520) {
+		suggestionLeft = 53;
+	} else if (windowSize > 260) {
+		suggestionLeft = 49;
+	} else {
+		suggestionLeft = 45;
+	}
+
 	let windowSizeModifire = windowSize > 520 ? 1 : 2;
 	let marginPer = windowSize > 520 ? history.length * 25 : history.length * 40;
 	let marginForSuggestion = marginPer / windowSizeModifire + defaultMargin + 'px';
-	let suggestionLeft = windowSize > 1840 ? 55 : windowSize > 260 ? 49 : 45;
 
 	return (
 		<form className='dropdown__addItem__form'>
@@ -218,17 +238,45 @@ const AddItem = () => {
 					/>
 				</label>
 			</div>
-			<div className='dropdown__addItem__input' id='dropdown__addItem__checkbox' onClick={hideSuggestions}>
-				<label style={{ display: 'flex', placeContent: 'center', placeItems: 'center' }}>
-					<Checkbox id='urgent-checkbox' checked={urgent} onChange={handleChange('urgent')} />
-					<span className='pl-1 pb-1'>Urgent</span>
-				</label>
-			</div>
-			<div className='dropdown__addItem__input__btn mt-0' onClick={handleSubmit}>
-				<IconButton>
-					<AddShoppingCartIcon />
-				</IconButton>
-			</div>
+			{windowSize > 300 && (
+				<div>
+					<div
+						className='dropdown__addItem__input'
+						id='dropdown__addItem__checkbox'
+						onClick={hideSuggestions}
+					>
+						<label style={{ display: 'flex', placeContent: 'center', placeItems: 'center' }}>
+							<Checkbox id='urgent-checkbox' checked={urgent} onChange={handleChange('urgent')} />
+							<span className='pl-1 pb-1'>Urgent</span>
+						</label>
+					</div>
+					<div className='dropdown__addItem__input__btn mt-0' onClick={handleSubmit}>
+						<IconButton>
+							<AddShoppingCartIcon />
+						</IconButton>
+					</div>
+				</div>
+			)}
+			{windowSize <= 300 && (
+				<div className='row'>
+					<div
+						className='dropdown__addItem__input mr-2'
+						id='dropdown__addItem__checkbox'
+						onClick={hideSuggestions}
+					>
+						<label style={{ display: 'flex', placeContent: 'center', placeItems: 'center' }}>
+							<Checkbox id='urgent-checkbox' checked={urgent} onChange={handleChange('urgent')} />
+							<span className='pl-1 pb-1'>Urgent</span>
+						</label>
+					</div>
+					<div className='dropdown__addItem__input__btn mt-0 ml-2' onClick={handleSubmit}>
+						<IconButton>
+							<AddShoppingCartIcon />
+						</IconButton>
+					</div>
+				</div>
+			)}
+
 			<div>
 				{showSuccess()}
 				{showError()}
