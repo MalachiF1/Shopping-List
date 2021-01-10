@@ -238,7 +238,7 @@ const AddItem = () => {
 					/>
 				</label>
 			</div>
-			{windowSize > 350 && (
+			{windowSize > 400 && (
 				<div>
 					<div
 						className='dropdown__addItem__input'
@@ -257,7 +257,7 @@ const AddItem = () => {
 					</div>
 				</div>
 			)}
-			{windowSize <= 350 && (
+			{windowSize <= 400 && (
 				<div className='row'>
 					<div
 						className='dropdown__addItem__input mr-2'
