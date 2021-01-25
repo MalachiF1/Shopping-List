@@ -4,7 +4,7 @@ import { updateItem } from '../../actions/item';
 import { getCookie } from '../../actions/auth';
 import eventHub from '../../helpers/eventHub';
 
-const UpdateItem = ({ item, updateParent }) => {
+const UpdateItem = ({ item, updateParent, updateGrandparent }) => {
 	const [token, setToken] = useState('');
 	const [values, setValues] = useState({
 		name: '',
@@ -73,8 +73,9 @@ const UpdateItem = ({ item, updateParent }) => {
 				error: false,
 			});
 			updateParent(values);
+			updateGrandparent(item, 'urgent');
 			let popup = document.getElementById(item.name + 'Popup');
-			popup.style.display = 'none';
+			popup ? (popup.style.display = 'none') : '';
 			eventHub.trigger('itemUpdated');
 		});
 	};

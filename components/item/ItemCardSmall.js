@@ -171,7 +171,7 @@ const ItemCardSmall = ({ item, updateParent }) => {
 			)}
 
 			<div id={item.name + 'Popup'} className='popup'>
-				<UpdateItem item={item} updateParent={updateItemCard} />
+				<UpdateItem item={item} updateParent={updateItemCard} updateGrandparent={updateParent} />
 			</div>
 		</div>
 	);
